@@ -167,7 +167,6 @@ public class ExpressOrderServiceImpl implements ExpressOrderService {
 
     /******************************************************************************/
     public Map<String, Object> onlineAdd(ExpressInsertModel model, int uid) {
-        System.out.println("___________________________________"+ JSON.toJSONString(model));
         Map<String, Object> map = new HashMap<String, Object>();
 
         SiteUser user = usvc.getUser(uid);
@@ -275,7 +274,7 @@ public class ExpressOrderServiceImpl implements ExpressOrderService {
 
     public Map<String, Object> getByExpressInfoByQRCode(String qrcode){
         Map<String, Object> map = new HashMap<String, Object>();
-        String url = "http://180.76.233.196/jieqd/qr/"+qrcode;
+        String url = "http://127.0.0.1/jieqd/qr/"+qrcode;
         String resultStr = HttpTools.get(url);
         System.out.println("**********************"+resultStr);
         ExpressQR result = JSON.parseObject(resultStr, ExpressQR.class);
@@ -348,7 +347,7 @@ public class ExpressOrderServiceImpl implements ExpressOrderService {
 
     private boolean checkByExpressInfoByQRCode(String qrcode, ExpressInsertModel model){
         Map<String, Object> map = new HashMap<String, Object>();
-        String url = "http://180.76.233.196/jieqd/qr/"+qrcode;
+        String url = "http://127.0.0.1/jieqd/qr/"+qrcode;
         String resultStr = HttpTools.get(url);
         System.out.println("**********************"+resultStr);
         ExpressQR result = JSON.parseObject(resultStr, ExpressQR.class);
