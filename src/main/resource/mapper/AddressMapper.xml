@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxslit.jcs.dao.AddressDAO">
+	<insert id="insert" parameterType="Address" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into address
+		(`name`,tel,address,isSender,isReceiver,userID,opsTimestamp,opsDate,siteID,siteName,cardName,cardID)
+		values
+		(#{name},#{tel},#{address},#{isSender},#{isReceiver},#{userID},#{opsTimestamp},#{opsDate},#{siteID},#{siteName},#{cardName},#{cardID})
+	</insert>
+
+	<select id="getByTel" resultType="Address" parameterType="Address">
+		select * from address 
+		<where>
+			tel = ${tel}
+			<if test="isSender>0">
+				and isSender = #{isSender}
+			</if>
+			<if test="isReceiver>0">
+				and isReceiver = #{isReceiver}
+			</if>
+		</where> 
+			order by opsDate desc
+			limit 0, 1
+	</select>
+
+	<select id="checkSender" resultType="java.lang.Integer" parameterType="Address">
+		select count(*) from address where tel=#{tel} and cardName=#{cardName} AND cardID=#{cardID} and isSender=1
+	</select>
+
+	<select id="checkReceiver" resultType="java.lang.Integer" parameterType="Address">
+		select count(*) from address where tel=#{tel} and `name`=#{name} and siteID=#{siteID} and isReceiver=1
+	</select>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxslit.jcs.dao.ExpressOrderDAO">
+    <insert id="insert" parameterType="ExpressOrder" useGeneratedKeys="true" keyProperty="id">
+		insert into expressOrder
+		(qrcode, expressNum,fromSiteID,fromSite,senderTel,sender,senderIDCard,senderDetailAddress,senderCoordinate,isDirect,toSiteID,toSite,recipientTel,recipient,recipientDetailAddress,recipientCoordinate,billingType,autoParts,weight,volume,contents,quantity,systemFreight,discount,payment,freight,collectionFee,value,insuranceRate,insuranceFee,transFee,pickupFee,deliveryFee,packingFee,stairsFee,remark,returnNum,notice,codeList,expressDate,isConfirm,fromWorkName,fromWorkNum,opsUserID)
+		values
+		(#{qrcode},#{expressNum},#{fromSiteID},#{fromSite},#{senderTel},#{sender},#{senderIDCard},#{senderDetailAddress},#{senderCoordinate},#{isDirect},#{toSiteID},#{toSite},#{recipientTel},#{recipient},#{recipientDetailAddress},#{recipientCoordinate},#{billingType},#{autoParts},#{weight},#{volume},#{contents},#{quantity},#{systemFreight},#{discount},#{payment},#{freight},#{collectionFee},#{value},#{insuranceRate},#{insuranceFee},#{transFee},#{pickupFee},#{deliveryFee},#{packingFee},#{stairsFee},#{remark},#{returnNum},#{notice},#{codeList},#{expressDate},#{isConfirm},#{fromWorkName},#{fromWorkNum},#{opsUserID})
+	</insert>
+    <delete id="delete">
+		delete from expressOrder where id=#{id}
+	</delete>
+    <select id="get" resultType="ExpressOrder">
+		select * from expressOrder where id=#{id}
+	</select>
+    <update id="update" parameterType="ExpressOrder">
+		update expressOrder set
+		expressNum=#{expressNum},fromSiteID=#{fromSiteID},fromSite=#{fromSite},senderTel=#{senderTel},sender=#{sender},senderIDCard=#{senderIDCard},senderDetailAddress=#{senderDetailAddress},senderCoordinate=#{senderCoordinate},isDirect=#{isDirect},toSiteID=#{toSiteID},toSite=#{toSite},recipientTel=#{recipientTel},recipient=#{recipient},recipientDetailAddress=#{recipientDetailAddress},recipientCoordinate=#{recipientCoordinate},billingType=#{billingType},autoParts=#{autoParts},weight=#{weight},volume=#{volume},contents=#{contents},quantity=#{quantity},systemFreight=#{systemFreight},discount=#{discount},payment=#{payment},freight=#{freight},collectionFee=#{collectionFee},value=#{value},insuranceRate=#{insuranceRate},insuranceFee=#{insuranceFee},transFee=#{transFee},pickupFee=#{pickupFee},deliveryFee=#{deliveryFee},packingFee=#{packingFee},stairsFee=#{stairsFee},remark=#{remark},returnNum=#{returnNum},notice=#{notice},codeList=#{codeList} where id=#{id}
+	</update>
+	<update id="confirm" parameterType="ExpressOrder">
+		update expressOrder set
+		isConfirm=#{isConfirm},opsDate=#{opsDate} where id=#{id}
+	</update>
+</mapper>
